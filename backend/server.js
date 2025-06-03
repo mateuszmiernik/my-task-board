@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
+import boardRoutes from './routes/boardRoutes.js';
 
 // Ładowanie zmiennych z pliku .env
 dotenv.config() 
@@ -16,9 +17,8 @@ connectDB();
 app.use(cors()); // Umożliwia połączenia z frontendu
 app.use(express.json()); // Parsuje body zapytań JSON -> JS object
 
-app.get('/', (req, res) => {
-    res.send('Server is running!!!')
-})
+// Główna trasa dla boards
+app.use('/api/boards', boardRoutes);
 
 const PORT = process.env.PORT || 5000;
 
