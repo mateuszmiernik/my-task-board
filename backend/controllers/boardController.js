@@ -36,3 +36,25 @@ export const getBoardById = async (req, res) => {
         res.status(500).json( {message: 'Server error while fetching board.' });
     }
 };
+
+export const updateBoard = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name, description } = req.body;
+
+        const updatedBoard = await Board.findByIdAndUpdate(
+            id,
+            { name, description },
+            { new: true }
+        );
+
+        if (!updatedBoard) {
+            return res.status(404).json({ message: 'Board not found' });
+        }
+
+        res.status(200).json(updatedBoard);
+    } catch (error) {
+        console.error('Error updating board', error);
+        res.status(500).json({ message: 'Server error while updating board.' });
+    }
+};
