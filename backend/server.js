@@ -3,22 +3,26 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import boardRoutes from './routes/boardRoutes.js';
+import taskRoutes from './routes/taskRoutes.js';
 
-// Ładowanie zmiennych z pliku .env
+// Load environment variables from .env file
 dotenv.config() 
 
-// Stworzenie instancji aplikacji Express
+// Create Express app instance
 const app = express();
 
-// Połącz się z MongoDB
+// Connect to MongoDB
 connectDB();
 
 // Middleware
 app.use(cors()); // Umożliwia połączenia z frontendu
 app.use(express.json()); // Parsuje body zapytań JSON -> JS object
 
-// Główna trasa dla boards
+// Main route for boards
 app.use('/api/boards', boardRoutes);
+
+// Main route for tasks
+app.use('/api/tasks', taskRoutes);
 
 const PORT = process.env.PORT || 5000;
 

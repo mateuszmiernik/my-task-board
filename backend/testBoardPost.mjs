@@ -8,8 +8,8 @@ const testCreateBoard = async () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                name: 'board_test_1',
-                description: 'test description',
+                name: 'board_test_3',
+                description: 'test description_new',
                 tasks: []
             })
         });

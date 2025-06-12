@@ -58,3 +58,20 @@ export const updateBoard = async (req, res) => {
         res.status(500).json({ message: 'Server error while updating board.' });
     }
 };
+
+export const deleteBoard = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+    const deletedBoard = await Board.findByIdAndDelete(id);
+
+    if (!deletedBoard) {
+        return res.status(404).json({ message: 'Board not found' });
+    }
+
+    res.status(200).json({ message: 'Board deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting board', error);
+        res.status(500).json({ message: 'Server error while deleting board.' });
+    }
+};
