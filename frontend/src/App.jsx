@@ -1,7 +1,9 @@
+import BoardList from "./BoardList";
+
 export default function App() {
   return (
-    <div className="bg-blue-500 text-white p-4 text-center">
-      Tailwind test
+    <div className='min-h-screen w-full flex flex-col items-center bg-white py-8'>
+      <BoardList />
     </div>
   );
 }
