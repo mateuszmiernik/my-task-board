@@ -10,16 +10,15 @@ export default {
         outfit: ['Outfit', 'sans-serif'],
       },
       fontSize: {
-        'xl-regular': ['2.5rem', { lineHeight: '1.2' }], // 40px
-        'base-regular': ['1rem', { lineHeight: '1.5' }], // 16px
-        'lg-semibold': ['1.25rem', { lineHeight: '1.4' }], // 20px
-        'base-semibold': ['1rem', { lineHeight: '1.5' }], // 16px
-        'sm-medium': ['0.875rem', { lineHeight: '1.4' }], // 14px
-        'xs-medium': ['0.75rem', { lineHeight: '1.2' }], // 12px
+        'xl': ['2.5rem', { lineHeight: '1.2' }], // 40px
+        'lg': ['1.25rem', { lineHeight: '1.4' }], // 20px
+        'base': ['1rem', { lineHeight: '1.5' }], // 16px
+        'sm': ['0.875rem', { lineHeight: '1.4' }], // 14px
+        'xs': ['0.75rem', { lineHeight: '1.2' }], // 12px
       },
       colors:{
         background: 'F8FAFC',
-        focus: '3662E3', // Niebieski,
+        focus: '3662E3', // Niebieski
         status: {
           todo: '#F8FAFC', // Jasny szary
           inprogress: {
@@ -53,4 +52,3 @@ export default {
   },
   plugins: [],
 }
-
