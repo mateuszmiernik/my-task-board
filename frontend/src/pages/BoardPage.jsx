@@ -23,7 +23,7 @@ const BoardList = () => {
     <div className='max-w-md mx-auto mt-10'>
         <div className='flex items-start gap-x-3'>
             {/* LOGO */}
-            <img src='images/Logo.svg' alt='logo' className='mt-[4px]' />
+            <img src='../images/Logo.svg' alt='logo' className='mt-[4px]' />
             {/* TITLE AND DESCRIPTION */}
             <div className='flex flex-col max-w-xs w-full'>
                 <div className='flex items-center gap-x-3'>
@@ -46,7 +46,7 @@ const BoardList = () => {
                         </h1>
                     )}
                     
-                    <img src='images/Edit_duotone.svg' alt='edit-icon' />
+                    <img src='../images/Edit_duotone.svg' alt='edit-icon' />
                 </div>
 
                 {isEditingDescription ? (

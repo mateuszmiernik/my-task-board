@@ -1,6 +1,6 @@
 export const createBoard = async () => {
     try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL/boards}`,
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/boards`,
         {
             method: 'POST',
             headers: {
@@ -22,4 +22,10 @@ export const createBoard = async () => {
         console.error('Error while creating new Board', error);
         throw error;
     }
-}
+};
+
+export const getBoardById = async (id) => {
+    const response = await fetch(`import.meta.env.VITE_API_URL/boards/${id}`, 
+        
+    )
+};
