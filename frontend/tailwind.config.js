@@ -17,8 +17,8 @@ export default {
         'xs': ['0.75rem', { lineHeight: '1.2' }], // 12px
       },
       colors:{
-        background: 'F8FAFC',
-        focus: '3662E3', // Niebieski
+        background: '#F8FAFC',
+        focus: '#3662E3', // Niebieski
         status: {
           todo: '#F8FAFC', // Jasny szary
           inprogress: {
@@ -36,7 +36,7 @@ export default {
         },
         button: {
           add: {
-            default: 'F5E8D5', // Jasny beż
+            default: '#F5E8D5', // Jasny beż
             accent: '#E9A23B', // Pomarańczowy
           },
           save: {

@@ -25,7 +25,31 @@ export const createBoard = async () => {
 };
 
 export const getBoardById = async (id) => {
-    const response = await fetch(`import.meta.env.VITE_API_URL/boards/${id}`, 
-        
-    )
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/boards/${id}`);
+
+    if (!response.ok) throw new Error('Failed to fetch a board.');
+
+    return await response.json();
+};
+
+export const updateBoard = async (id, board) => {
+    try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/boards/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(board)
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to update board');
+    }
+
+    return await response.json();
+
+    } catch (error) {
+        console.error('Error while updating board:', error);
+        throw error;
+    }
 };
