@@ -5,7 +5,7 @@ import GridOverlay from './pages/GridOverlay';
 
 export default function App() {
   return (
-    <div className='min-h-screen w-full bg-white py-8'>
+    <div className='min-h-screen w-full bg-background py-8'>
       <div className='max-w-[1280px] mx-auto px-[72px]'>
         <GridOverlay />
         <Router>

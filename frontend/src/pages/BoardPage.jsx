@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getBoardById } from '../api/BoardApi';
 import { updateBoard } from '../api/BoardApi';
 import TaskCard from './TaskCard';
+import TaskList from './TaskList';
 
 import {
     ClockIcon,        // Task in Progress
@@ -66,7 +67,7 @@ const BoardPage = () => {
 
     return (
         <div className='w-full mt-10 grid grid-cols-12 gap-8'>
-            <div className='col-start-4 col-end-10 flex justify-center mb-8'>
+            <div className='col-start-4 col-end-10 flex justify-center'>
                 <div className='w-full max-w-[941px] flex items-start gap-x-3'>
                     {/* LOGO */}
                     <img src='../images/Logo.svg' alt='logo' className='mt-[4px]' />
@@ -118,13 +119,7 @@ const BoardPage = () => {
             </div>
             <div className='col-start-4 col-end-10 flex justify-center'>
                 <div className='w-full max-w-[941px]'>
-                    <TaskCard
-                        name="Task in Progress"
-                        description="This task is in progress"
-                        icon={iconMap['ClockIcon']}
-                        status="In Progress"
-                        rightIcon={iconMap['ClockIcon']}
-                    />
+                    <TaskList />
                 </div>
             </div>
         </div>

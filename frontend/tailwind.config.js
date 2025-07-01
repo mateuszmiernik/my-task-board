@@ -20,16 +20,16 @@ export default {
         background: '#F8FAFC',
         focus: '#3662E3', // Niebieski
         status: {
-          todo: '#F8FAFC', // Jasny szary
+          todo: '#E3E8EF', // Jasny szary
           inprogress: {
             default: '#F5D565', // Jasny żółty
             accent: '#E9A23B', // Pomarańczowy
           },
           completed: {
-            default: 'A0ECB1', // Jasnozielony
+            default: '#A0ECB1', // Jasnozielony
             accent: '#32D657', // Zielony
           },
-          wontDo : {
+          wontdo : {
             default: '#F7D4D3', // Czerwony
             accent: '#DD524C', // Ciemniejszy czerwony
           },

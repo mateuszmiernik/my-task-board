@@ -2,26 +2,29 @@ const defaultTasks = [
   {
     id: 1,
     name: 'Task in Progress',
-    status: 'In Progress',
-    icon: 'ClockIcon'
+    status: 'inprogress',
+    icon: 'ClockIcon',
+    rightIcon: ''
   },
   {
     id: 2,
     name: 'Task Completed',
-    status: 'Completed',
+    status: 'completed',
     icon: 'CheckCircleIcon',
   },
   {
     id: 3,
     name: "Task Won't Do",
-    status: "Won't do",
+    status: "wontdo",
     icon: 'XCircleIcon',
   },
   {
     id: 4,
     name: 'Task To Do',
     description: 'Work on a Challenge on devChallenges.io, learn TypeScript.',
-    status: 'To Do',
+    status: 'todo',
     icon: 'ClipboardIcon',
   }
 ];
+
+export default defaultTasks;
