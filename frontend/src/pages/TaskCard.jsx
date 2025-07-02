@@ -29,7 +29,7 @@ const TaskCard = ({ name, description, icon, status }) => {
                     <h3 className='text-lg font-bold'>{name}</h3>
                 </div>
                 {description && (
-                    <p className='text-base max-w-[320px] ml-14'>{description}</p>
+                    <p className='text-base max-w-[320px] ml-[4rem]'>{description}</p>
                 )}
             </div>
             {rightIconMap[status] && (

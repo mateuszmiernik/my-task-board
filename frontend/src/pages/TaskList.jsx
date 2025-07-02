@@ -3,10 +3,10 @@ import TaskCard from './TaskCard';
 import defaultTasks from '../data/defaultTasks';
 
 const emojiMap = {
-    ClockIcon: '⏰',        // U+23F0
-    CheckCircleIcon: '🏋️',  // U+1F3CB
-    XCircleIcon: '☕',      // U+2615
-    ClipboardIcon: '📚'     // U+1F4DA
+    ClockIcon: '⏰',
+    CheckCircleIcon: '🏋️',
+    XCircleIcon: '☕',
+    ClipboardIcon: '📚'
 };
 
 const TaskList = () => {
@@ -21,9 +21,18 @@ const TaskList = () => {
                     description={task.description}
                     status={task.status}
                     icon={emojiMap[task.icon]}
-                    rightIcon={task.rightIcon}
                 />
             ))}
+
+            <button
+                className='flex items-center gap-5 px-5 py-5 rounded-xl bg-button-add-default font-outfit text-base font-bold'
+
+            >
+                <span className='w-10 h-10 flex items-center justify-center text-lg rounded-lg bg-status-inprogress-accent ml-[0.2rem]'>
+                    <img src='../public/images/Add_round_duotone.svg' />
+                </span>
+                Add new task
+            </button>
         </div>
     )
 };
