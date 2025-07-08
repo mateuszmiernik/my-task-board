@@ -7,6 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        sans: ['Outfit', 'sans-serif'],
         outfit: ['Outfit', 'sans-serif'],
       },
       fontSize: {
@@ -18,6 +19,7 @@ export default {
       },
       colors:{
         background: '#F8FAFC',
+        default: '#97A3B6',
         focus: '#3662E3', // Niebieski
         status: {
           todo: '#E3E8EF', // Jasny szary

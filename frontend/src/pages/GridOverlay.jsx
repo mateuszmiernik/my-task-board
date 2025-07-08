@@ -16,7 +16,7 @@ export default function GridOverlay() {
         transform: "translateX(-50%)",
         width: `${containerWidth}px`,
         height: "100vh",
-        zIndex: 9999,
+        zIndex: 20,
         mixBlendMode: "multiply",
       }}
     >

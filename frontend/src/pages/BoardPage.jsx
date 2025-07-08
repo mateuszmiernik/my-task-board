@@ -4,6 +4,7 @@ import { getBoardById } from '../api/BoardApi';
 import { updateBoard } from '../api/BoardApi';
 import TaskCard from './TaskCard';
 import TaskList from './TaskList';
+import TaskForm from './TaskForm';
 
 import {
     ClockIcon,        // Task in Progress
