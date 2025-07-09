@@ -45,9 +45,15 @@ export default {
             default: '#3662E3', // Niebieski
           },
           delete: {
-            default: '#00000033', // jasny szary
-            accent: '#97A3B6' // ciemny szary
+            default: '#97A3B6' , // ciemny szary
+            accent: '#00000033' // jasny szary
+          },
+          text: {
+            white: '#F8FAFC',
           }
+        },
+        icon: {
+          background: '#E3E8EF'
         }
       },
     },
