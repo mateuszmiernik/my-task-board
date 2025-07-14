@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { statusOptions } from '../config/statusConfig';
 
-const TaskForm = () => {
-
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-    const [icon, setIcon] = useState('');
-    const [status, setStatus] = useState('');
+const TaskForm = ({ initialTask, onSave, onDelete, onClose, mode }) => {
+    const [name, setName] = useState(initialTask?.name || '');
+    const [description, setDescription] = useState(initialTask?.description || '');
+    const [icon, setIcon] = useState(initialTask?.icon || '');
+    const [status, setStatus] = useState(initialTask?.status || '');
 
     const statusOrder = ['inprogress', 'completed', 'wontdo'];
 

@@ -5,6 +5,8 @@ import { updateBoard } from '../api/BoardApi';
 import TaskCard from './TaskCard';
 import TaskList from './TaskList';
 import TaskForm from './TaskForm';
+import defaultTasks from '../data/defaultTasks';
+import { useTaskStore } from '../store/taskStore';
 
 import {
     ClockIcon,        // Task in Progress
@@ -27,6 +29,8 @@ const BoardPage = () => {
 
     const [isEditingTitle, setIsEditingTitle] = useState(false);
     const [isEditingDescription, setIsEditingDescription] = useState(false);
+
+    const {tasks, setTasks} = useTaskStore();
 
     const handleTitleClick = () => setIsEditingTitle(true);
     const handleDescriptionClick = () => setIsEditingDescription(true);
@@ -65,6 +69,12 @@ const BoardPage = () => {
         };
         fetchBoard();
     }, [id]);
+
+    useEffect(() => {
+        if (tasks.length === 0) {
+            setTasks(defaultTasks);
+        }
+    }, [tasks, setTasks]);
 
     return (
         <div className='w-full mt-10 grid grid-cols-12 gap-8'>
