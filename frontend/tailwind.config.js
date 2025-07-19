@@ -21,6 +21,7 @@ export default {
         background: '#F8FAFC',
         default: '#97A3B6',
         focus: '#3662E3', // Niebieski
+        error: '#DD524C',
         status: {
           todo: '#E3E8EF', // Jasny szary
           inprogress: {

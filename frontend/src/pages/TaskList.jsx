@@ -27,6 +27,7 @@ const TaskList = () => {
 
             <button
                 className='flex items-center gap-5 px-5 py-5 rounded-xl bg-button-add-default font-outfit text-base font-bold'
+                onClick={() => openModal(null)}
             >
                 <span className='w-10 h-10 flex items-center justify-center text-lg rounded-lg bg-status-inprogress-accent ml-[0.2rem]'>
                     <img src='../public/images/Add_round_duotone.svg' />

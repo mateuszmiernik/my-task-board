@@ -1,13 +1,56 @@
 import React, { useEffect, useState } from 'react';
 import { statusOptions } from '../config/statusConfig';
 
-const TaskForm = ({ initialTask, onSave, onDelete, onClose, mode }) => {
+const TaskForm = ({ initialTask, onClose, onSave }) => {
     const [name, setName] = useState(initialTask?.name || '');
     const [description, setDescription] = useState(initialTask?.description || '');
     const [icon, setIcon] = useState(initialTask?.icon || '');
     const [status, setStatus] = useState(initialTask?.status || '');
 
+    const [nameError, setNameError] = useState('');
+    const [iconError, setIconError] = useState('');
+    const [statusError, setStatusError] = useState('');
+
     const statusOrder = ['inprogress', 'completed', 'wontdo'];
+
+    const handleSave = () => {
+        let valid = true;
+
+        // Reset errors
+        setNameError('');
+        setIconError('');
+        setStatusError('');
+
+        // Checking each field
+        if (!name.trim()) {
+            setNameError('required');
+            valid = false;
+        }
+
+        if (!icon) {
+            setIconError('required');
+            valid = false;
+        }
+
+
+        if (!status) {
+            setStatusError('required');
+            valid = false;
+        }
+
+        if (!valid) return;
+
+        const taskData = {
+            id: initialTask?.id || Date.now(),
+            name: name.trim(),
+            description: description.trim(),
+            icon,
+            status
+        };
+
+        onSave(taskData);
+        onClose(); // zamknij modal po zapisaniu
+    };
 
     return (
         <div className="fixed top-0 right-0 h-full w-full bg-black/20 flex items-start justify-end pr-3 pt-3 z-50">
@@ -16,7 +59,9 @@ const TaskForm = ({ initialTask, onSave, onDelete, onClose, mode }) => {
                     <h2 className='font-outfit text-lg'>Task details</h2>
                     <button
                         type='button'
-                        className='text-xl'>
+                        className='text-xl'
+                        onClick={onClose}
+                    >
                         <span className='w-8 h-8 flex items-center justify-center rounded-lg border border-button-add bg-white hover:shadow transition'>
                             <img src='/images/close_ring_duotone-1.svg' />
                         </span>
@@ -29,8 +74,10 @@ const TaskForm = ({ initialTask, onSave, onDelete, onClose, mode }) => {
                     type='text'
                     value={name}
                     onChange={e => setName(e.target.value)}
-                    className='w-full mb-4 text-base border-2 border-default rounded-md px-3.5 py-2 focus:border-focus focus:outline-none'
+                    className={`w-full ${nameError ? 'mb-1' : 'mb-4'} text-base border-2 ${nameError ? 'border-error focus:border-error' : 'border-default focus:border-focus' } rounded-md px-3.5 py-2 focus:outline-none`}
                 />
+                {nameError && <p className='text-error text-xs mb-4'>{nameError}</p>}
+
                 {/* DESCRIPTION */}
                 <label className='block text-xs text-default mb-1'>Description</label>
                 <textarea
@@ -98,6 +145,7 @@ const TaskForm = ({ initialTask, onSave, onDelete, onClose, mode }) => {
                     </button>
                     <button
                         className='flex items-center gap-2 px-7 py-2 bg-button-save-default text-sm text-button-text-white border-2 rounded-[1.2rem]'
+                        onClick={handleSave}
                     >
                         Save
                         <span>

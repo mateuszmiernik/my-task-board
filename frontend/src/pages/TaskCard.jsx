@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TaskCard = ({ name, description, icon, status }) => {
+const TaskCard = ({ name, description, icon, status, onClick }) => {
 
     const statusBg = {
         'inprogress': 'bg-status-inprogress-default',
@@ -22,7 +22,10 @@ const TaskCard = ({ name, description, icon, status }) => {
     };
 
     return (
-        <div className={`flex items-center justify-between px-4 py-5 rounded-2xl shadow font-outfit ${statusBg[status]} w-full`}>
+        <div 
+            className={`flex items-center justify-between px-4 py-5 rounded-2xl shadow font-outfit ${statusBg[status]} w-full`}
+            onClick={onClick}
+        >
             <div className='flex flex-col w-full gap-0'>
                 <div className='flex items-center gap-[1.3rem]'>
                     <span className='w-10 h-10 flex items-center justify-center text-lg rounded-lg bg-white ml-[0.2rem]'>{icon}</span>
