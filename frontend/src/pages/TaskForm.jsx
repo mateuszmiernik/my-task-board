@@ -16,6 +16,9 @@ const TaskForm = ({ initialTask, onClose, onSave }) => {
     const handleSave = () => {
         let valid = true;
 
+        // Debug
+        console.log('icon:', icon);
+
         // Reset errors
         setNameError('');
         setIconError('');
@@ -31,7 +34,6 @@ const TaskForm = ({ initialTask, onClose, onSave }) => {
             setIconError('required');
             valid = false;
         }
-
 
         if (!status) {
             setStatusError('required');
@@ -90,22 +92,22 @@ const TaskForm = ({ initialTask, onClose, onSave }) => {
 
                 {/* ICONS */}
                 <label className='block text-xs text-default mb-2'>Icon</label>
-                <div className='flex gap-2 mb-4'>
+                <div className={`flex gap-2 ${statusError ? 'mb-1' : 'mb-4'}`}>
                     {['👨‍💻', '💬', '☕', '🏋️', '📚', '⏰'].map(ic => (
                         <button
                             key={ic}
-                            className={`w-10 h-10 flex items-center justify-center text-lg rounded-lg bg-icon-background ml-[0.2rem] border-2 ${icon === ic ? 'border-focus' : 'border-transparent'} focus:outline-none`}
+                            className={`w-10 h-10 flex items-center justify-center text-lg rounded-lg bg-icon-background ml-[0.2rem] border-2 ${icon === ic ? 'border-focus' : iconError ? 'border-error' : 'border-transparent'} focus:outline-none`}
                             onClick={() => setIcon(ic)}
                         >
                             {ic}
                         </button>
                     ))}
                 </div>
+                { iconError && <p className='text-error text-xs mb-4'>{iconError}</p>}
 
                 {/* STATUS */}
                 <label className='block text-xs text-default mb-2'>Status</label>
-                <div className='grid grid-cols-2 gap-4 mb-[5rem]'>
-
+                <div className={`grid grid-cols-2 gap-4 ${statusError ? 'mb-1' : 'mb-[5rem]'}`}>
                     {statusOrder.map(key => {
                         const option = statusOptions[key];
                         return (
@@ -113,7 +115,7 @@ const TaskForm = ({ initialTask, onClose, onSave }) => {
                                 key={key}
                                 type='button'
                                 onClick={() => setStatus(key)}
-                                className={`w-full flex items-center justify-between gap-3 pl-0.5 pr-3 py-0.5 border-2 rounded-xl ${status === key ? 'border-focus' : 'border-default'}`}
+                                className={`w-full flex items-center justify-between gap-3 pl-0.5 pr-3 py-0.5 border-2 rounded-xl ${status === key ? 'border-focus' : statusError ? 'border-error' : 'border-default'}`}
                             >
                                 <span className='flex items-center gap-3'>
                                     <span className={`w-10 h-10 flex items-center justify-center rounded-lg ${option.accent}`}>
@@ -132,6 +134,7 @@ const TaskForm = ({ initialTask, onClose, onSave }) => {
                         )
                     })}
                 </div>
+                {statusError && <p className='text-error text-xs mb-4'>{statusError}</p>}
 
                 {/* BUTTONS */}
                 <div className='flex justify-end gap-3'>
