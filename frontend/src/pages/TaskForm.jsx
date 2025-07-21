@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { statusOptions } from '../config/statusConfig';
+import { createTask } from '../api/TaskApi';
 
-const TaskForm = ({ initialTask, onClose, onSave }) => {
+const TaskForm = ({ initialTask, onClose, onSave, boardId }) => {
     const [name, setName] = useState(initialTask?.name || '');
     const [description, setDescription] = useState(initialTask?.description || '');
     const [icon, setIcon] = useState(initialTask?.icon || '');
@@ -13,11 +14,11 @@ const TaskForm = ({ initialTask, onClose, onSave }) => {
 
     const statusOrder = ['inprogress', 'completed', 'wontdo'];
 
-    const handleSave = () => {
+    const handleSave = async () => {
         let valid = true;
 
         // Debug
-        console.log('icon:', icon);
+        // console.log('icon:', icon);
 
         // Reset errors
         setNameError('');
@@ -42,16 +43,22 @@ const TaskForm = ({ initialTask, onClose, onSave }) => {
 
         if (!valid) return;
 
-        const taskData = {
-            id: initialTask?.id || Date.now(),
+        const payload = {
+            boardId,
             name: name.trim(),
             description: description.trim(),
             icon,
             status
         };
 
-        onSave(taskData);
-        onClose(); // zamknij modal po zapisaniu
+        try {
+            const newTask = await createTask(payload);
+            onSave(newTask); // dodajesz task do Zustand/globalnego stanu
+            onClose(); // zamyka modal po zapisaniu
+
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (
