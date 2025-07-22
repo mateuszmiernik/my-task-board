@@ -3,10 +3,10 @@ import { createTask, getTaskById, updateTask, deleteTask, getTaskByBoardId } fro
 
 const router = express.Router();
 
+router.get('/', getTaskByBoardId);
 router.post('/', createTask);
 router.get('/:id', getTaskById);
 router.put('/:id', updateTask);
 router.delete('/:id', deleteTask);
-router.get('/', getTaskByBoardId);
 
 export default router;
