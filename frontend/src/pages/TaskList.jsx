@@ -11,12 +11,12 @@ const emojiMap = {
 
 const TaskList = () => {
     const { tasks, openModal } = useTaskStore();
-
+    console.log(tasks);
     return (
         <div className='flex flex-col gap-4'>
             {tasks.map(task => (
-                <TaskCard 
-                    key={task.id}
+                <TaskCard
+                    key={task._id || task.id}
                     name={task.name}
                     description={task.description}
                     status={task.status}
