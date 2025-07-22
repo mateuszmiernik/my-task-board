@@ -7,6 +7,7 @@ import TaskList from './TaskList';
 import TaskForm from './TaskForm';
 import defaultTasks from '../data/defaultTasks';
 import { useTaskStore } from '../store/taskStore';
+import { getTaskByBoardId } from '../api/TaskApi';
 
 import {
     ClockIcon,        // Task in Progress
@@ -71,10 +72,16 @@ const BoardPage = () => {
     }, [id]);
 
     useEffect(() => {
-        if (tasks.length === 0) {
-            setTasks(defaultTasks);
-        }
-    }, [tasks, setTasks]);
+        const fetchTasks = async () => {
+            const tasks = await getTaskByBoardId(id);
+            if (tasks.length === 0) {
+                setTasks(defaultTasks);
+            } else {
+                setTasks(tasks)
+            }
+        };
+        fetchTasks();
+    }, [id, setTasks]);
 
     return (
         <div className='w-full mt-10 grid grid-cols-12 gap-8'>

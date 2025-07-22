@@ -16,3 +16,14 @@ export const createTask =  async (task) => {
         throw error;
     }
 };
+
+export const getTaskByBoardId = async (boardId) => {
+    try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/tasks?boardId=${boardId}`)
+        if (!response.ok) throw new Error('Error fetching tasks');
+        return await response.json();
+    } catch (error) {
+        console.error('Error while fetching tasks', error);
+        return [];
+    }
+};
