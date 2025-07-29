@@ -2,13 +2,6 @@ import React, { useState } from 'react';
 import TaskCard from './TaskCard';
 import { useTaskStore } from '../store/taskStore';
 
-const emojiMap = {
-    ClockIcon: '⏰',
-    CheckCircleIcon: '🏋️',
-    XCircleIcon: '☕',
-    ClipboardIcon: '📚'
-};
-
 const TaskList = () => {
     const { tasks, openModal } = useTaskStore();
     console.log(tasks);
@@ -20,7 +13,7 @@ const TaskList = () => {
                     name={task.name}
                     description={task.description}
                     status={task.status}
-                    icon={emojiMap[task.icon]}
+                    icon={task.icon}
                     onClick={() => openModal(task)}
                 />
             ))}

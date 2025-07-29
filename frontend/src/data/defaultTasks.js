@@ -3,27 +3,27 @@ const defaultTasks = [
     id: 1,
     name: 'Task in Progress',
     status: 'inprogress',
-    icon: 'ClockIcon',
+    icon: '⏰',
     rightIcon: ''
   },
   {
     id: 2,
     name: 'Task Completed',
     status: 'completed',
-    icon: 'CheckCircleIcon',
+    icon: '🏋️',
   },
   {
     id: 3,
     name: "Task Won't Do",
     status: "wontdo",
-    icon: 'XCircleIcon',
+    icon: '☕',
   },
   {
     id: 4,
     name: 'Task To Do',
     description: 'Work on a Challenge on devChallenges.io, learn TypeScript.',
     status: 'todo',
-    icon: 'ClipboardIcon',
+    icon: '📚',
   }
 ];
 
