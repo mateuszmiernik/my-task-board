@@ -7,7 +7,7 @@ import TaskList from './TaskList';
 import TaskForm from './TaskForm';
 import defaultTasks from '../data/defaultTasks';
 import { useTaskStore } from '../store/taskStore';
-import { getTaskByBoardId } from '../api/TaskApi';
+import { getTaskByBoardId, createTask } from '../api/TaskApi';
 
 import {
     ClockIcon,        // Task in Progress
@@ -31,7 +31,7 @@ const BoardPage = () => {
     const [isEditingTitle, setIsEditingTitle] = useState(false);
     const [isEditingDescription, setIsEditingDescription] = useState(false);
 
-    const {tasks, setTasks} = useTaskStore();
+    const { tasks, setTasks } = useTaskStore();
 
     const handleTitleClick = () => setIsEditingTitle(true);
     const handleDescriptionClick = () => setIsEditingDescription(true);
@@ -72,15 +72,29 @@ const BoardPage = () => {
     }, [id]);
 
     useEffect(() => {
+        let isMounted = true; // ochrona przed podwójnym wywołaniem
+
         const fetchTasks = async () => {
             const tasks = await getTaskByBoardId(id);
-            if (tasks.length === 0) {
-                setTasks(defaultTasks);
-            } else {
+
+            if (isMounted && tasks.length === 0) {
+                await Promise.all(
+                    defaultTasks.map((task) =>
+                        createTask({
+                            ...task,
+                            boardId: id
+                        })
+                    )
+                );
+                const tasksFromDb = await getTaskByBoardId(id);
+                if (isMounted) setTasks(tasksFromDb);
+            } else if (isMounted) {
                 setTasks(tasks)
             }
         };
         fetchTasks();
+
+        return () => { isMounted: false }; // cleanup, efekt nie wykona się po odmontowaniu
     }, [id, setTasks]);
 
     return (
