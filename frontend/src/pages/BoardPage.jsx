@@ -5,9 +5,9 @@ import { updateBoard } from '../api/BoardApi';
 import TaskCard from './TaskCard';
 import TaskList from './TaskList';
 import TaskForm from './TaskForm';
-import defaultTasks from '../data/defaultTasks';
+// import defaultTasks from '../data/defaultTasks';
 import { useTaskStore } from '../store/taskStore';
-import { getTaskByBoardId, createTask } from '../api/TaskApi';
+import { getTaskByBoardId } from '../api/TaskApi';
 
 import {
     ClockIcon,        // Task in Progress
@@ -59,42 +59,32 @@ const BoardPage = () => {
     }
 
     useEffect(() => {
+        if (!id) return;
         const fetchBoard = async () => {
             try {
                 const board = await getBoardById(id);
-                setTitle(board.name);
-                setDescription(board.description);
-            } catch (error) {
-                console.error('Error while fetching a board', error);
+                setTitle(board?.name || 'My Task Board');
+                setDescription(board?.description || 'Tasks to keep organised');
+            } catch {
+                setTitle('My Task Board');
+                setDescription('Tasks to keep organised');
             }
         };
         fetchBoard();
     }, [id]);
 
     useEffect(() => {
-        let isMounted = true; // ochrona przed podwójnym wywołaniem
-
+        if (!id) return;
         const fetchTasks = async () => {
-            const tasks = await getTaskByBoardId(id);
-
-            if (isMounted && tasks.length === 0) {
-                await Promise.all(
-                    defaultTasks.map((task) =>
-                        createTask({
-                            ...task,
-                            boardId: id
-                        })
-                    )
-                );
-                const tasksFromDb = await getTaskByBoardId(id);
-                if (isMounted) setTasks(tasksFromDb);
-            } else if (isMounted) {
-                setTasks(tasks)
+            try {
+                const tasks = await getTaskByBoardId(id);
+                setTasks(tasks || []);
+            } catch (err) {
+                console.error('Error while fetching tasks', err);
+                setTasks([]);
             }
         };
         fetchTasks();
-
-        return () => { isMounted: false }; // cleanup, efekt nie wykona się po odmontowaniu
     }, [id, setTasks]);
 
     return (

@@ -1,19 +1,32 @@
 import Board from '../models/Board.js';
 import Task from '../models/Task.js';
+import defaultTasks from '../data/defaultTasks.js';
 
 export const createBoard = async (req, res) => {
     try {
-        const { name, description, tasks } = req.body;
+        const { name, description } = req.body || {};
         
         const board = new Board ({
             name: name,
             description: description,
-            tasks: tasks
+            tasks: []
         });
 
         const savedBoard = await board.save();
 
-        res.status(201).json(savedBoard);
+        const tasksToCreate = defaultTasks.map(t => ({...t, boardId: savedBoard._id}));
+
+        try {
+            const createdTasks = await Task.insertMany(tasksToCreate, { ordered: false });
+
+            savedBoard.tasks = createdTasks.map(t => t._id);
+            await savedBoard.save();
+        } catch (insertErr) {
+            console.error('Error while creating default tasks for board:', insertErr);
+        }
+
+        const boardWithTasks = await Board.findById(savedBoard._id).populate('tasks');
+        res.status(201).json(boardWithTasks);
     } catch (error) {
         console.error('Error creating board', error);
         res.status(500).json({ message: 'Server error while creating board.' });

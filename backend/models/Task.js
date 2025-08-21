@@ -22,6 +22,8 @@ const taskSchema = new mongoose.Schema({
     timestamps: true
 });
 
+taskSchema.index( { boardId: 1, name: 1 }, { unique: true });
+
 const Task = mongoose.model('Task', taskSchema);
 
 export default Task;
