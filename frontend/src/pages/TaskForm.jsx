@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { statusOptions } from '../config/statusConfig';
-import { createTask, updateTask as updateTaskApi } from '../api/TaskApi';
+import { createTask, updateTask as updateTaskApi, deleteTask as deleteTaskApi } from '../api/TaskApi';
 import { useTaskStore } from '../store/taskStore';
 
 const TaskForm = ({ initialTask, onClose, onSave, boardId }) => {
@@ -15,7 +15,9 @@ const TaskForm = ({ initialTask, onClose, onSave, boardId }) => {
 
     const statusOrder = ['inprogress', 'completed', 'wontdo'];
 
-    const { updateTaskInStore } = useTaskStore();
+    const { updateTaskInStore, removeTask } = useTaskStore();
+
+    console.log(initialTask);
 
     useEffect(() => {
         if (!initialTask) return;
@@ -85,6 +87,26 @@ const TaskForm = ({ initialTask, onClose, onSave, boardId }) => {
             onSave(newTask); // dodajesz task do Zustand/globalnego stanu
             onClose(); // zamyka modal po zapisaniu
 
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const handleDelete = async () => {
+        if (!initialTask?._id) {
+            // brak id → nic do kasowania w DB; po prostu zamknij modal
+            onClose();
+            return;
+        }
+
+        const confirm = window.confirm('Are you sure you want to delete this task?');
+        if (!confirm) return;
+
+        try {
+            console.log('DELETE /tasks/:id', initialTask._id); // debug
+            await deleteTaskApi(initialTask._id);
+            removeTask(initialTask._id); // usuń ze Zustand
+            onClose(); // zamknij modal
         } catch (error) {
             console.error(error);
         }
@@ -176,6 +198,7 @@ const TaskForm = ({ initialTask, onClose, onSave, boardId }) => {
                 <div className='flex justify-end gap-3'>
                     <button
                         className='flex items-center gap-2 px-7 py-2 bg-button-delete-default text-sm text-button-text-white border-2 rounded-[1.2rem]'
+                        onClick={handleDelete}
                     >
                         Delete
                         <span>
