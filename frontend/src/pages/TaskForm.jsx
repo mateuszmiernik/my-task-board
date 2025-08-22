@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { statusOptions } from '../config/statusConfig';
-import { createTask } from '../api/TaskApi';
+import { createTask, updateTask as updateTaskApi } from '../api/TaskApi';
+import { useTaskStore } from '../store/taskStore';
 
 const TaskForm = ({ initialTask, onClose, onSave, boardId }) => {
     const [name, setName] = useState(initialTask?.name || '');
@@ -13,6 +14,16 @@ const TaskForm = ({ initialTask, onClose, onSave, boardId }) => {
     const [statusError, setStatusError] = useState('');
 
     const statusOrder = ['inprogress', 'completed', 'wontdo'];
+
+    const { updateTaskInStore } = useTaskStore();
+
+    useEffect(() => {
+        if (!initialTask) return;
+        setName(initialTask.name || '');
+        setDescription(initialTask.description || '');
+        setIcon(initialTask.icon || '');
+        setStatus(initialTask.status || '');
+    }, [initialTask]);
 
     const handleSave = async () => {
         let valid = true;
@@ -43,6 +54,24 @@ const TaskForm = ({ initialTask, onClose, onSave, boardId }) => {
 
         if (!valid) return;
 
+        // [EDYCJA] mamy istniejący task → PUT i lokalna podmiana
+        if (initialTask?._id) {
+            try {
+                const updated = await updateTaskApi(initialTask._id, {
+                    name: name.trim(),
+                    description: description.trim(),
+                    icon,
+                    status
+                });
+                updateTaskInStore(updated);
+                onClose();
+            } catch (error) {
+                console.error(error);
+            }
+            return; // ważne: nie przechodzimy do gałęzi tworzenia
+        }
+
+        // [TWORZENIE] brak _id → POST
         const payload = {
             boardId,
             name: name.trim(),

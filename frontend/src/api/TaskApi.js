@@ -27,3 +27,18 @@ export const getTaskByBoardId = async (boardId) => {
         return [];
     }
 };
+
+export const updateTask = async (id, data) => {
+    try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/tasks/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (!response.ok) throw new Error ('Error updating task');
+        return await response.json();
+    } catch (error) {
+        console.error('Error while updating task', error);
+        throw error;
+    }
+};

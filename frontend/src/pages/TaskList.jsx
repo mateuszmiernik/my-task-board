@@ -4,7 +4,7 @@ import { useTaskStore } from '../store/taskStore';
 
 const TaskList = () => {
     const { tasks, openModal } = useTaskStore();
-    console.log(tasks);
+    // console.log(tasks);
     return (
         <div className='flex flex-col gap-4'>
             {tasks.map(task => (

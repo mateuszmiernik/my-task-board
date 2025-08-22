@@ -14,4 +14,8 @@ export const useTaskStore = create((set) => ({
         tasks: [...state.tasks, task]
     })),
 
+    updateTaskInStore: (updated) => set((state) => ({
+        tasks: state.tasks.map((t) => (t._id === updated._id ? updated : t))
+    }))
+
 }));
