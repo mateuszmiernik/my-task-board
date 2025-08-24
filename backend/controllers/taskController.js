@@ -82,7 +82,7 @@ export const getTaskByBoardId = async (req, res) => {
         if (!boardId) {
             return res.status(404).json({ message: 'boardId is required' });
         }
-        const tasks = await Task.find({ boardId });
+        const tasks = await Task.find({ boardId }).sort({ _id: 1});
         res.json(tasks);
     } catch (error) {
         console.error('Error fetching tasks:', error);

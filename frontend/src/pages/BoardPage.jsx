@@ -90,7 +90,7 @@ const BoardPage = () => {
     return (
         <div className='w-full mt-10 grid grid-cols-12 gap-8'>
             <div className='col-start-4 col-end-10 flex justify-center'>
-                <div className='w-full max-w-[941px] flex items-start gap-x-3'>
+                <div className='w-[549.2px] shrink-0 flex items-start gap-x-3'>
                     {/* LOGO */}
                     <img src='../images/Logo.svg' alt='logo' className='mt-[4px]' />
                     {/* TITLE AND DESCRIPTION */}
@@ -140,7 +140,7 @@ const BoardPage = () => {
                 </div>
             </div>
             <div className='col-start-4 col-end-10 flex justify-center'>
-                <div className='w-full max-w-[941px]'>
+                <div className='w-[549.2px] shrink-0'>
                     <TaskList />
                 </div>
             </div>

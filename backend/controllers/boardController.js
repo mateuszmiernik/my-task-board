@@ -17,7 +17,7 @@ export const createBoard = async (req, res) => {
         const tasksToCreate = defaultTasks.map(t => ({...t, boardId: savedBoard._id}));
 
         try {
-            const createdTasks = await Task.insertMany(tasksToCreate, { ordered: false });
+            const createdTasks = await Task.insertMany(tasksToCreate, { ordered: true });
 
             savedBoard.tasks = createdTasks.map(t => t._id);
             await savedBoard.save();

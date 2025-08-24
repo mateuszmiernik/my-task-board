@@ -113,7 +113,7 @@ const TaskForm = ({ initialTask, onClose, onSave, boardId }) => {
     };
 
     return (
-        <div className="fixed top-0 right-0 h-full w-full bg-black/20 flex items-start justify-end pr-3 pt-3 z-50">
+        <div className="fixed inset-0 h-full w-full bg-black/20 flex items-start justify-center p-3 md:justify-end md:pr-3 md:pt-3 z-50">
             <div className='bg-white rounded-xl px-5 py-4 w-full max-w-[39.1rem]'>
                 <div className='flex items-center justify-between mb-4'>
                     <h2 className='font-outfit text-lg'>Task details</h2>
