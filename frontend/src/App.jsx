@@ -20,7 +20,7 @@ function AppContent() {
   return (
     <div className='min-h-screen w-full bg-background py-8'>
       <div className='max-w-[1280px] mx-auto px-4 sm:px-6 md:px-[72px]'>
-        <GridOverlay />
+        {/* <GridOverlay /> */}
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/board/:id' element={<BoardPage />} />
