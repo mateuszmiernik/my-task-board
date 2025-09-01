@@ -123,7 +123,7 @@ const TaskForm = ({ initialTask, onClose, onSave, boardId }) => {
                         onClick={onClose}
                     >
                         <span className='w-8 h-8 flex items-center justify-center rounded-lg border border-button-add bg-white hover:shadow transition'>
-                            <img src='/images/close_ring_duotone-1.svg' />
+                            <img src='/images/close_ring_duotone-1.svg' alt='close-icon' />
                         </span>
                     </button>
                 </div>

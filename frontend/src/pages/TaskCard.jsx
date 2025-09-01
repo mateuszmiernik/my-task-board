@@ -23,13 +23,13 @@ const TaskCard = ({ name, description, icon, status, onClick }) => {
 
     return (
         <div 
-            className={`flex items-center justify-between px-4 py-5 rounded-2xl shadow font-outfit ${statusBg[status]} w-full`}
+            className={`flex items-center justify-between px-4 py-[1.3rem] rounded-2xl shadow font-outfit ${statusBg[status]} w-full`}
             onClick={onClick}
         >
             <div className='flex flex-col w-full gap-0'>
                 <div className='flex items-center gap-[1.3rem]'>
                     <span className='w-10 h-10 flex items-center justify-center text-lg rounded-lg bg-white ml-[0.2rem]'>{icon}</span>
-                    <h3 className='text-lg font-bold'>{name}</h3>
+                    <h2 className='text-lg font-bold'>{name}</h2>
                 </div>
                 {description && (
                     <p className='text-base max-w-[320px] ml-[4rem]'>{description}</p>

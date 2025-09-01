@@ -88,11 +88,11 @@ const BoardPage = () => {
     }, [id, setTasks]);
 
     return (
-        <div className='w-full mt-10 grid grid-cols-12 gap-8'>
+        <div className='w-full grid grid-cols-12 gap-[2.3rem]'>
             <div className='col-start-4 col-end-10 flex justify-center'>
                 <div className='w-[549.2px] shrink-0 flex items-start gap-x-3'>
                     {/* LOGO */}
-                    <img src='../images/Logo.svg' alt='logo' className='mt-[4px]' />
+                    <img src='../images/Logo.svg' alt='logo' className='mt-[4px]' height='40' width='40' />
                     {/* TITLE AND DESCRIPTION */}
                     <div className='flex flex-col max-w-xs w-full'>
                         <div className='flex items-center gap-x-3'>
@@ -120,7 +120,7 @@ const BoardPage = () => {
 
                         {isEditingDescription ? (
                             <input
-                                className='font-outfit text-base mt-2 w-full outline-none'
+                                className='font-outfit text-base mt-[0.7rem] w-full outline-none'
                                 type='text'
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
@@ -129,7 +129,7 @@ const BoardPage = () => {
                             />
                         ) : (
                             <p
-                                className='font-outfit text-base mt-2 cursor-pointer'
+                                className='font-outfit text-base mt-[0.7rem] cursor-pointer'
                                 onClick={handleDescriptionClick}
                             >
                                 {description}
