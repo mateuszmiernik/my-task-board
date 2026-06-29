@@ -1,6 +1,20 @@
 import { create } from 'zustand';
+import { Task } from '../types';
 
-export const useTaskStore = create((set) => ({
+interface TaskState {
+    tasks: Task[];
+    isModalOpen: boolean;
+    editingTask: Task | null;
+
+    setTasks: (tasks: Task[]) => void;
+    openModal: (task?: Task | null) => void;
+    closeModal: () => void;
+    addTask: (task: Task) => void;
+    updateTaskInStore: (updated: Task) => void;
+    removeTask: (id: string) => void;
+}
+
+export const useTaskStore = create<TaskState>((set) => ({
     tasks: [],
     isModalOpen: false,
     editingTask: null,
