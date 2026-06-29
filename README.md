@@ -4,7 +4,7 @@
 
 The application is fully deployed and available online:
 
-*   **Frontend (User Interface):** [my-task-board-nine.vercel.app](https://vercel.app)
+*   **Frontend (User Interface):** [my-task-board-nine.vercel.app](https://my-task-board-nine.vercel.app)
 *   **Backend (REST API URL):** [my-task-board-tj0n.onrender.com](https://my-task-board-tj0n.onrender.com) *(Note: Accessing the root URL directly returns a 404 error, as the backend only serves specific `/api` endpoints)*
 
 
