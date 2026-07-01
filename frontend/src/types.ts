@@ -6,3 +6,5 @@ export interface Task {
     status: string;
     icon?: string;
 }
+
+export type TaskStatus = 'todo' | 'inprogress' | 'completed' | 'wontdo';

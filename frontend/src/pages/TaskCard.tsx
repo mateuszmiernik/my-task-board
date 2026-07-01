@@ -1,21 +1,30 @@
 import React from 'react';
+import { TaskStatus } from '../types';
 
-const TaskCard = ({ name, description, icon, status, onClick }) => {
+interface TaskCardProps {
+    name: string;
+    description?: string;
+    icon?: string;
+    status: TaskStatus;
+    onClick: () => void;
+}
 
-    const statusBg = {
+const TaskCard = ({ name, description, icon, status, onClick }: TaskCardProps) => {
+
+    const statusBg: Record<TaskStatus, string> = {
         'inprogress': 'bg-status-inprogress-default',
         'completed': 'bg-status-completed-default',
         'wontdo': 'bg-status-wontdo-default',
         'todo': 'bg-status-todo'
     };
 
-    const statusAccent = {
+    const statusAccent: Partial<Record<TaskStatus, string>> = {
         'inprogress': 'bg-status-inprogress-accent',
         'completed':  'bg-status-completed-accent',
         'wontdo':  'bg-status-wontdo-accent',
     };
 
-    const rightIconMap = {
+    const rightIconMap: Partial<Record<TaskStatus, string>> = {
         'inprogress': '/images/Time_atack_duotone.svg',
         'completed':  '/images/Done_round_duotone.svg',
         'wontdo': '/images/close_ring_duotone.svg',
