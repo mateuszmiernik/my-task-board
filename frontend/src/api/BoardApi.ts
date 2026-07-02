@@ -1,4 +1,6 @@
-export const createBoard = async () => {
+import { Board } from '../types';
+
+export const createBoard = async (): Promise<Board> => {
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/boards`,
         {
@@ -16,7 +18,7 @@ export const createBoard = async () => {
 
     if (!response.ok) throw new Error('Error creating new Board');
 
-    const data = await response.json();
+    const data = await response.json() as Board;
     return data;
     } catch (error) {
         console.error('Error while creating new Board', error);
@@ -24,7 +26,7 @@ export const createBoard = async () => {
     }
 };
 
-export const getBoardById = async (id) => {
+export const getBoardById = async (id: string): Promise<Board> => {
     const response = await fetch(`${import.meta.env.VITE_API_URL}/boards/${id}`);
 
     if (!response.ok) throw new Error('Failed to fetch a board.');
@@ -32,7 +34,7 @@ export const getBoardById = async (id) => {
     return await response.json();
 };
 
-export const updateBoard = async (id, board) => {
+export const updateBoard = async (id: string, board: Board): Promise<Board> => {
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/boards/${id}`, {
         method: 'PUT',

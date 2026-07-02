@@ -71,7 +71,7 @@ const TaskForm = ({ initialTask, onClose, onSave, boardId }: TaskFormProps) => {
                     name: name.trim(),
                     description: description.trim(),
                     icon,
-                    status
+                    status: status as TaskStatus
                 });
                 updateTaskInStore(updated);
                 onClose();

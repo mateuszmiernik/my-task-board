@@ -1,4 +1,6 @@
-export const createTask =  async (task) => {
+import { Task } from '../types';
+
+export const createTask =  async (task: Task): Promise<Task> => {
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/tasks`, {
             method: 'POST',
@@ -17,7 +19,7 @@ export const createTask =  async (task) => {
     }
 };
 
-export const getTaskByBoardId = async (boardId) => {
+export const getTaskByBoardId = async (boardId: string): Promise<Task[]> => {
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/tasks?boardId=${boardId}`)
         if (!response.ok) throw new Error('Error fetching tasks');
@@ -28,7 +30,7 @@ export const getTaskByBoardId = async (boardId) => {
     }
 };
 
-export const updateTask = async (id, data) => {
+export const updateTask = async (id: string, data: Partial<Task>): Promise<Task> => {
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/tasks/${id}`, {
             method: 'PUT',
@@ -43,7 +45,7 @@ export const updateTask = async (id, data) => {
     }
 };
 
-export const deleteTask = async (id) => {
+export const deleteTask = async (id: string): Promise<boolean> => {
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/tasks/${id}`, {
             method: 'DELETE'
