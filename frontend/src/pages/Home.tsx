@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createBoard } from '../api/BoardApi';
+import { createBoard } from '../api/BoardApi.ts';
 
 const Home = () => {
     const navigate = useNavigate();

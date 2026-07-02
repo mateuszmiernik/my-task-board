@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getBoardById } from '../api/BoardApi';
-import { updateBoard } from '../api/BoardApi';
-import TaskCard from './TaskCard';
+import { getBoardById } from '../api/BoardApi.ts';
+import { updateBoard } from '../api/BoardApi.ts';
+// import TaskCard from './TaskCard';
 import TaskList from './TaskList';
-import TaskForm from './TaskForm';
+// import TaskForm from './TaskForm';
 // import defaultTasks from '../data/defaultTasks';
 import { useTaskStore } from '../store/taskStore';
-import { getTaskByBoardId } from '../api/TaskApi';
+import { getTaskByBoardId } from '../api/TaskApi.ts';
 
-import {
-    ClockIcon,        // Task in Progress
-    CheckCircleIcon,  // Task Completed
-    XCircleIcon,      // Task Won't Do
-    ClipboardIcon     // Task To Do
-} from '@heroicons/react/24/solid';
+// import {
+//     ClockIcon,        // Task in Progress
+//     CheckCircleIcon,  // Task Completed
+//     XCircleIcon,      // Task Won't Do
+//     ClipboardIcon     // Task To Do
+// } from '@heroicons/react/24/solid';
 
-const iconMap = {
-    ClockIcon: <ClockIcon className="w-7 h-7 text-yellow-500" />,
-    CheckCircleIcon: <CheckCircleIcon className="w-7 h-7 text-green-500" />,
-    XCircleIcon: <XCircleIcon className="w-7 h-7 text-red-400" />,
-    ClipboardIcon: <ClipboardIcon className="w-7 h-7 text-blue-400" />,
-};
+// const iconMap = {
+//     ClockIcon: <ClockIcon className="w-7 h-7 text-yellow-500" />,
+//     CheckCircleIcon: <CheckCircleIcon className="w-7 h-7 text-green-500" />,
+//     XCircleIcon: <XCircleIcon className="w-7 h-7 text-red-400" />,
+//     ClipboardIcon: <ClipboardIcon className="w-7 h-7 text-blue-400" />,
+// };
 
 const BoardPage = () => {
     const { id } = useParams();
@@ -31,7 +31,7 @@ const BoardPage = () => {
     const [isEditingTitle, setIsEditingTitle] = useState(false);
     const [isEditingDescription, setIsEditingDescription] = useState(false);
 
-    const { tasks, setTasks } = useTaskStore();
+    const { setTasks } = useTaskStore();
 
     const handleTitleClick = () => setIsEditingTitle(true);
     const handleDescriptionClick = () => setIsEditingDescription(true);

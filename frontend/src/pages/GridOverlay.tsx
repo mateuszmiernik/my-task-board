@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 
 const columns = 12;
 const gap = 32; // px

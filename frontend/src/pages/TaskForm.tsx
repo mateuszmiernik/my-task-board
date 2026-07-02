@@ -1,19 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { statusOptions } from '../config/statusConfig';
-import { createTask, updateTask as updateTaskApi, deleteTask as deleteTaskApi } from '../api/TaskApi';
+import { createTask, updateTask as updateTaskApi, deleteTask as deleteTaskApi } from '../api/TaskApi.ts';
 import { useTaskStore } from '../store/taskStore';
+import { Task, TaskStatus } from '../types';
 
-const TaskForm = ({ initialTask, onClose, onSave, boardId }) => {
-    const [name, setName] = useState(initialTask?.name || '');
-    const [description, setDescription] = useState(initialTask?.description || '');
-    const [icon, setIcon] = useState(initialTask?.icon || '');
-    const [status, setStatus] = useState(initialTask?.status || '');
+interface TaskFormProps {
+    initialTask: Task | null;
+    boardId?: string;
+    onClose: () => void;
+    onSave: (task: Task) => void;
+}
 
-    const [nameError, setNameError] = useState('');
-    const [iconError, setIconError] = useState('');
-    const [statusError, setStatusError] = useState('');
+const TaskForm = ({ initialTask, onClose, onSave, boardId }: TaskFormProps) => {
+    const [name, setName] = useState<string>(initialTask?.name || '');
+    const [description, setDescription] = useState<string>(initialTask?.description || '');
+    const [icon, setIcon] = useState<string>(initialTask?.icon || '');
+    const [status, setStatus] = useState<TaskStatus | ''>(initialTask?.status || '');
 
-    const statusOrder = ['inprogress', 'completed', 'wontdo'];
+    const [nameError, setNameError] = useState<string>('');
+    const [iconError, setIconError] = useState<string>('');
+    const [statusError, setStatusError] = useState<string>('');
+
+    const statusOrder: TaskStatus[] = ['inprogress', 'completed', 'wontdo'];
 
     const { updateTaskInStore, removeTask } = useTaskStore();
 
@@ -79,7 +87,7 @@ const TaskForm = ({ initialTask, onClose, onSave, boardId }) => {
             name: name.trim(),
             description: description.trim(),
             icon,
-            status
+            status: status as TaskStatus
         };
 
         try {
@@ -141,7 +149,6 @@ const TaskForm = ({ initialTask, onClose, onSave, boardId }) => {
                 {/* DESCRIPTION */}
                 <label className='block text-xs text-default mb-1'>Description</label>
                 <textarea
-                    type='text'
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                     className='w-full mb-4 min-h-[10rem] text-base border-2 border-default rounded-md px-3.5 py-2 focus:border-focus focus:outline-none'

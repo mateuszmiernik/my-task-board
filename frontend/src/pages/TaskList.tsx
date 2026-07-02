@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import TaskCard from './TaskCard';
 import { useTaskStore } from '../store/taskStore';
+import {TaskStatus} from '../types';
 
 const TaskList = () => {
     const { tasks, openModal } = useTaskStore();
@@ -12,7 +13,7 @@ const TaskList = () => {
                     key={task._id || task.id}
                     name={task.name}
                     description={task.description}
-                    status={task.status}
+                    status={task.status as TaskStatus}
                     icon={task.icon}
                     onClick={() => openModal(task)}
                 />
