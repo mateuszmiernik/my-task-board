@@ -88,14 +88,14 @@ const BoardPage = () => {
     }, [id, setTasks]);
 
     return (
-        <div className='w-full grid grid-cols-12 gap-[2.3rem]'>
-            <div className='col-start-4 col-end-10 flex justify-center'>
-                <div className='w-[549.2px] shrink-0 flex items-start gap-x-3'>
+        <div className='w-full grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-[2.3rem]'>
+            <div className='md:col-start-4 md:col-end-10 flex justify-center'>
+                <div className='w-full max-w-[549.2px] flex items-start gap-x-3'>
                     {/* LOGO */}
                     <img src='../images/Logo.svg' alt='logo' className='mt-[4px]' height='40' width='40' />
                     {/* TITLE AND DESCRIPTION */}
-                    <div className='flex flex-col max-w-xs w-full'>
-                        <div className='flex items-center gap-x-3'>
+                    <div className='flex flex-col min-w-0 w-full'>
+                        <div className='flex items-center gap-x-3 min-w-0'>
 
                             {isEditingTitle ? (
                                 <input
@@ -108,7 +108,7 @@ const BoardPage = () => {
                                 />
                             ) : (
                                 <h1
-                                    className='font-outfit text-xl cursor-pointer'
+                                    className='font-outfit text-xl cursor-pointer break-words'
                                     onClick={handleTitleClick}
                                 >
                                     {title}
@@ -129,7 +129,7 @@ const BoardPage = () => {
                             />
                         ) : (
                             <p
-                                className='font-outfit text-base mt-[0.7rem] cursor-pointer'
+                                className='font-outfit text-base mt-[0.7rem] cursor-pointer break-words'
                                 onClick={handleDescriptionClick}
                             >
                                 {description}
@@ -139,8 +139,8 @@ const BoardPage = () => {
                     </div>
                 </div>
             </div>
-            <div className='col-start-4 col-end-10 flex justify-center'>
-                <div className='w-[549.2px] shrink-0'>
+            <div className='md:col-start-4 md:col-end-10 flex justify-center'>
+                <div className='w-full max-w-[549.2px]'>
                     <TaskList />
                 </div>
             </div>
