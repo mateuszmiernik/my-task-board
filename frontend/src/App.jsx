@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import React, { useState } from 'react';
+import React from 'react';
 import Home from './pages/Home';
 import BoardPage from './pages/BoardPage';
 import GridOverlay from './pages/GridOverlay';
@@ -18,7 +18,7 @@ function AppContent() {
   }
 
   return (
-    <div className='min-h-screen w-full bg-background pt-12 pb-8'>
+    <div className={`w-full bg-background pt-12 pb-8 ${isModalOpen ? 'h-screen overflow-hidden md:min-h-screen md:h-auto md:overflow-visible' : 'min-h-screen'}`}>
       <div className='max-w-[1280px] mx-auto px-4 sm:px-6 md:px-[72px]'>
         {/* <GridOverlay /> */}
         <Routes>
